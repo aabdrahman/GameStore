@@ -1,0 +1,46 @@
+GET http://localhost:5216/GetGames
+
+###
+GET http://localhost:5216/GetGenre
+
+###
+POST http://localhost:5216/GetGenre
+Content-Type: application/json
+
+{
+    "genrename": "Puzzle"
+}
+
+
+###
+GET http://localhost:5216/GetGames/8
+
+###
+GET http://localhost:5216/GetGamesByYear/1990
+
+###
+DELETE http://localhost:5216/GetGames/7
+
+###
+POST http://localhost:5216/GetGames
+Content-Type: application/json
+
+{
+    "Name": "Need For Speed",
+    "Company": "Criterion Games",
+    "ReleasedDate": "1994-12-01",
+    "GenreId": 1,
+    "Price": 60.55
+}
+
+###
+PUT http://localhost:5216/GetGames/1
+Content-Type: application/json
+
+{
+    "Name": "Call Of Duty",
+    "Company": "Sledgehammer Games",
+    "ReleasedDate": "2003-10-29",
+    "GenreId": 3,
+    "Price": 32.95
+}

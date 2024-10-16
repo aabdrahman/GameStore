@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\GameStore.Api",
+    "\\GameStore.Api\\GameStore.Api",
+    "\\GameStore.Api\\GameStore.Api\\Data",
+    "\\GameStore.Api\\GameStore.Api\\Endpoints",
+    "\\GameStore.Api\\GameStore.Api\\Entities",
+    "\\GameStore.Api\\GameStore.Api\\Mapping"
+  ],
+  "SelectedNode": "\\GameStore.Api\\GameStore.Api\\Data\\GameStoreContext.cs",
+  "PreviewInSolutionExplorer": false
+}
