@@ -30,7 +30,7 @@ else
                     <td class="text-end">@game.Price.ToString("C2")</td>
                     <td>@game.ReleaseDate</td>
                     <td>
-
+                            <a role="button" class="btn btn-primary me-2" href="/editgame/@GetGameUrl(game.Id)"><i class="bi bi-pencil"></i></a>
                     </td>
                 </tr>
             }
@@ -45,5 +45,10 @@ else
     protected override void OnInitialized()
     {
         games = gamesClient.GetGameSummaries();
+    }
+
+    private static string GetGameUrl(int Id)
+    {
+        return $"editgame/{Id}";
     }
 }
