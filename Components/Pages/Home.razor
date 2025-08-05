@@ -30,7 +30,11 @@ else
                     <td class="text-end">@game.Price.ToString("C2")</td>
                     <td>@game.ReleaseDate</td>
                     <td>
+                        <div class="d-flex">
                             <a role="button" class="btn btn-primary me-2" href="/editgame/@GetGameUrl(game.Id)"><i class="bi bi-pencil"></i></a>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="@GetDeleteModalId(game)"><i class="bi bi-x-lg"></i></button>
+                        </div>
+                        <DeleteGame gameToDelete="@game"/>
                     </td>
                 </tr>
             }
@@ -39,7 +43,6 @@ else
 }
 
 @code {
-    //private GamesClient client = new();
     private List<GameSummary> games;
     
     protected override void OnInitialized()
@@ -50,5 +53,10 @@ else
     private static string GetGameUrl(int Id)
     {
         return $"editgame/{Id}";
+    }
+
+    private string GetDeleteModalId(GameSummary game)
+    {
+        return $"#{DeleteGame.GetModalId(game)}";
     }
 }

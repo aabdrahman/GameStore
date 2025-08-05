@@ -53,6 +53,12 @@ public class GamesClient
         existingGame.Genre = updatedGame.Name;
     }
 
+    public void DeleteGame(int Id)
+    {
+        var game = GetGameSummaryById(Id);
+        games.Remove(game);
+    }
+
     private GameSummary GetGameSummaryById(int Id)
     {
         GameSummary? gameSummary = games.Find(x => x.Id == Id);

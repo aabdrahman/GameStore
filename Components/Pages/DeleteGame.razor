@@ -1,0 +1,55 @@
+﻿@inject GamesClient gameClient
+@inject NavigationManager navigationManager
+@rendermode InteractiveServer 
+
+@*The above allows for interactivity*@
+
+@* <h3>Delete Game</h3> *@
+
+<!-- Button trigger modal -->
+@* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> *@
+
+@* </button> *@
+
+<!-- Modal -->
+<div class="modal fade" id="@GetModalId(gameToDelete)" modal-dialog modal-dialog-centered data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">@title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" @onclick="@Confirm">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id {get; set;}
+
+    [Parameter]
+    public GameSummary? gameToDelete { get; set; }
+
+    public static string GetModalId(GameSummary? gameSummary)
+    {
+        ArgumentNullException.ThrowIfNull(gameSummary);
+        return $"deleteModal-{gameSummary.Id}";
+    }
+
+    protected override void OnParametersSet()
+    {
+        title = $"Delete {gameToDelete!.Name}?";
+    }
+
+    private string title = string.Empty;
+
+    private void Confirm()
+    {
+        gameClient.DeleteGame(gameToDelete!.Id);
+        navigationManager.Refresh();
+    }
+}
