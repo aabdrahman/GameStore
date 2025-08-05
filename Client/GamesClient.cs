@@ -1,9 +1,11 @@
+using System.Runtime.CompilerServices;
 using GameStore.UI.Models;
 
 namespace GameStore.UI.Client;
 
 public class GamesClient
 {
+    private readonly GenresClient genresClient = new();
     private readonly List<GameSummary> games = new List<GameSummary>
     {
         new GameSummary(){Id = 1, Name = "Street Fighter II", Genre = "Fighting", Price = 19.99m, ReleaseDate = new DateOnly(1992, 7, 15)},
@@ -12,4 +14,16 @@ public class GamesClient
     };
 
     public List<GameSummary> GetGameSummaries() => games;
+    public void AddGame(GameDetails gameDetails)
+    {
+        var gameToInsert = new GameSummary()
+        {
+            Id = games.Count + 1,
+            Name = gameDetails.Name,
+            Genre = genresClient.GetGenres().FirstOrDefault(x => x.Id == Convert.ToInt32(gameDetails.GenreId))?.Name ?? throw new ArgumentNullException(nameof(Genre), $"Invalid Genre Id."),
+            ReleaseDate = gameDetails.ReleaseDate,
+            Price = gameDetails.Price
+        };
+        games.Add(gameToInsert);
+    }
 }
