@@ -1,5 +1,6 @@
 ﻿@page "/editgame"
 @page "/editgame/{Id:int}"
+@using System.Text.Json
 @rendermode InteractiveServer
 
 @inject NavigationManager navigationManager
@@ -69,6 +70,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         genres = await genresClient.GetGenres();
+        Console.WriteLine(JsonSerializer.Serialize(genres));
     }
     protected override async Task OnParametersSetAsync()
     {

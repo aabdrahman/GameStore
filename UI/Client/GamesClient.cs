@@ -91,6 +91,6 @@ public class GamesClient(HttpClient httpClient)
         var content = await response.Content.ReadAsStringAsync();
 
         var genre = JsonSerializer.Deserialize<GenreDto>(content);
-        return new Genre() { Id = genre.id, Name = genre.name };
+        return new Genre() { Id = genre.id, Name = genre.genre };
     }
 }

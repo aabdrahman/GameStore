@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.Api", "GameStore.Api\GameStore.Api.csproj", "{AAA2305E-9D98-4AD1-BEEF-F1D1AB9C6763}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameStoreApi", "GameStoreApi", "{BAD6A815-BFCA-9793-4742-2CA067C6559C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.Api", "GameStore.Api.csproj", "{C3F73A89-2ECE-4648-93A1-4FA6465BDFA9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameStore.UI", "GameStore.UI", "{5D7B5599-4B2F-409C-120D-1323CDE986EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.UI", "..\..\..\UI\GameStore.UI.csproj", "{F7601F57-F004-448C-9FBC-6CEF774AAFA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +17,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AAA2305E-9D98-4AD1-BEEF-F1D1AB9C6763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AAA2305E-9D98-4AD1-BEEF-F1D1AB9C6763}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AAA2305E-9D98-4AD1-BEEF-F1D1AB9C6763}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AAA2305E-9D98-4AD1-BEEF-F1D1AB9C6763}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3F73A89-2ECE-4648-93A1-4FA6465BDFA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3F73A89-2ECE-4648-93A1-4FA6465BDFA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3F73A89-2ECE-4648-93A1-4FA6465BDFA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3F73A89-2ECE-4648-93A1-4FA6465BDFA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7601F57-F004-448C-9FBC-6CEF774AAFA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7601F57-F004-448C-9FBC-6CEF774AAFA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7601F57-F004-448C-9FBC-6CEF774AAFA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7601F57-F004-448C-9FBC-6CEF774AAFA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C3F73A89-2ECE-4648-93A1-4FA6465BDFA9} = {BAD6A815-BFCA-9793-4742-2CA067C6559C}
+		{F7601F57-F004-448C-9FBC-6CEF774AAFA3} = {5D7B5599-4B2F-409C-120D-1323CDE986EE}
 	EndGlobalSection
 EndGlobal

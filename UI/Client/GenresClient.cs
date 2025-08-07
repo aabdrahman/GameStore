@@ -11,8 +11,9 @@ public class GenresClient(HttpClient httpClient)
     {
         var response = await httpClient.GetAsync("GetGenre");
         var content = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(content);
         var genreturn = JsonSerializer.Deserialize<List<GenreDto>>(content);
-        return genreturn.Select(x => new Genre() { Id = x.id, Name = x.name }).ToList();
+        return genreturn.Select(x => new Genre() { Id = x.id, Name = x.genre }).ToList();
     }
 
     private async Task SetGenres()
