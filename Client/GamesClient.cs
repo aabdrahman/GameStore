@@ -1,8 +1,4 @@
-using System.Net.Http.Headers;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using GameStore.UI.Models;
 
 namespace GameStore.UI.Client;
@@ -23,7 +19,6 @@ public class GamesClient(HttpClient httpClient)
 
         var content = await getDetails.Content.ReadAsStringAsync();
 
-        Console.WriteLine(content);
         var gamesDto = JsonSerializer.Deserialize<List<GameDto>>(content);
 
         return gamesDto.Select(x => new GameSummary() { Id = x.id, Genre = x.genre, Name = x.name, Price = x.price, ReleaseDate = x.releasedDate }).ToList() ?? [];
@@ -42,7 +37,6 @@ public class GamesClient(HttpClient httpClient)
         };
 
         var response = await httpClient.PostAsJsonAsync("GetGames", gameToInsert);
-        Console.WriteLine(await response.Content.ReadAsStringAsync());
     }
 
     public async Task<GameDetails?> GetById(int Id)
@@ -85,7 +79,6 @@ public class GamesClient(HttpClient httpClient)
     {
         var response = await httpClient.GetAsync($"GetGames/{Id}");
         var stringContent = await response.Content.ReadAsStringAsync();
-        Console.WriteLine(stringContent);
         var gameDto = JsonSerializer.Deserialize<GameDto>(stringContent);
         ArgumentNullException.ThrowIfNull(gameDto);
         return new GameSummary(){Id = gameDto.id, Genre = gameDto.genre, Name = gameDto.name, Price = gameDto.price, ReleaseDate = gameDto.releasedDate};
@@ -96,7 +89,6 @@ public class GamesClient(HttpClient httpClient)
         ArgumentNullException.ThrowIfNull(Id);
         var response = await httpClient.GetAsync($"GetGames/{Id}");
         var content = await response.Content.ReadAsStringAsync();
-        Console.WriteLine(content);
 
         var genre = JsonSerializer.Deserialize<GenreDto>(content);
         return new Genre() { Id = genre.id, Name = genre.name };
