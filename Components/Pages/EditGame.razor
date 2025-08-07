@@ -8,7 +8,7 @@
 
 <PageTitle>@title</PageTitle>
 <h3>@title</h3>
-@if(genres.Count == 0 || gameDetails is null)
+@if(genres?.Count == 0 || gameDetails is null)
 {
     <p><em>Loading......</em></p>
 }
@@ -66,12 +66,11 @@ else
     private List<Genre> genres;
     private string title = string.Empty;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        genres = genresClient.GetGenres();
+        genres = await genresClient.GetGenres();
     }
-
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
         if(gameDetails is not null)
         {
@@ -88,23 +87,23 @@ else
         }
         else
         {
-            gameDetails = gamesClient.GetById(Id.Value);
+            gameDetails = await gamesClient.GetById(Id.Value);
             title = $"Edit {gameDetails.Name}";
         }
     }
 
-    private void HandleSubmit()
+    private async Task HandleSubmit()
     {
         ArgumentNullException.ThrowIfNull(gameDetails);
 
         if(Id is null)
         {
-            gamesClient.AddGame(gameDetails);
+            await gamesClient.AddGame(gameDetails);
         }
         else
         {
             gameDetails.Id = Id.Value;
-            gamesClient.UpdateGame(gameDetails);
+            await gamesClient.UpdateGame(gameDetails);
         }
 
         navigationManager.NavigateTo("/");

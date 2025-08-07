@@ -6,9 +6,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents(); //Allows for interactivity and then added to pipeline in the maprazorcomponent call
-builder.Services.AddSingleton<GamesClient>();
-builder.Services.AddSingleton<GenresClient>();
 
+builder.Services.AddHttpClient<GamesClient>(opts =>
+{
+    opts.BaseAddress = new Uri(builder.Configuration.GetValue<string>("BaseUri")!);
+});
+
+builder.Services.AddHttpClient<GenresClient>(opts =>
+{
+    opts.BaseAddress = new Uri(builder.Configuration.GetValue<string>("BaseUri")!);
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

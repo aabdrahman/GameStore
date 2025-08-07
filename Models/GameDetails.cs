@@ -15,3 +15,12 @@ public class GameDetails
     [Required]
     public DateOnly ReleaseDate { get; set; }
 }
+
+public class CreateGameDto
+{
+    public string Name { get; set; }
+    public string Company { get; set; } = "";
+    public DateOnly ReleasedDate { get; set; }
+    public int GenreId { get; set; }
+    public decimal Price { get; set; }
+}
